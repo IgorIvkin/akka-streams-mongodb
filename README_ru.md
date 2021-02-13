@@ -1,11 +1,11 @@
-# Akka Streams to MongoDB example
+# Пример использования Akka Streams + MongoDB
 
-Это небольшое демо-приложение написано на Spring Boot в качестве примера использования
+Это демо-приложение написано на Spring Boot как пример использования
 Akka Streams. Мы генерируем (случайно) курсы криптовалют, фильтруем их 
 и сохраняем в MongoDB, используя концепцию, которая называется Flow Process 
 в Akka Streams.
 
-### How to run it?
+### Как запустить
 
 Я советую вам использовать какой-нибудь 
 docker-образ MongoDB. Я сам пользовался [образом](https://github.com/bitnami/bitnami-docker-mongodb)
