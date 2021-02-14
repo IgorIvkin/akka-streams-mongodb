@@ -37,6 +37,11 @@ You will see something similar to:
     { "_id" : ObjectId("6027afb3ab20aef6faed4aeb"), "createdAt" : ISODate("2021-02-13T10:53:39.924Z"), "cryptoName" : "ETH", "rateToUSD" : 0.7098834856981644 }
     { "_id" : ObjectId("6027afb3ab20aef6faed4aed"), "createdAt" : ISODate("2021-02-13T10:53:39.924Z"), "cryptoName" : "ETH", "rateToUSD" : 0.2567091007933938 }
 
+You will see also for the following message in the application's log: 
+`Sink to MongoDB is finished`. It will be paused for a ~5 seconds because
+we setup backpressure's respect on our Flow process to insert maximum 2
+documents per second.
+
 ### Useful links
 * [Documentation of Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html)
 * [Documentation of Akka Streams + MongoDB](https://doc.akka.io/docs/alpakka/current/mongodb.html)

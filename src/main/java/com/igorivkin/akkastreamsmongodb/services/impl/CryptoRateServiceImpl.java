@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 
 @Service
@@ -39,9 +40,8 @@ public class CryptoRateServiceImpl implements CryptoRateService {
     public void sinkAndFilter() {
         CompletionStage<Done> completionStage = Source.from(externalApiCryptoRatesService.getCryptoRates())
                 .filter(cryptoRate -> !cryptoRate.getCryptoName().equals("BTC")) // skip bitcoins
+                .throttle(2, Duration.ofSeconds(1)) // store not more than 2 elements per second
                 .runWith(MongoSink.insertOne(cryptoRateCollection), materializer);
-        completionStage.thenRun(() -> {
-            log.info("Sink to MongoDB is finished");
-        });
+        completionStage.thenRun(() -> log.info("Sink to MongoDB is finished"));
     }
 }

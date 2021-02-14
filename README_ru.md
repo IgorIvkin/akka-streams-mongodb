@@ -39,6 +39,11 @@ docker-образ MongoDB. Я сам пользовался [образом](htt
     { "_id" : ObjectId("6027afb3ab20aef6faed4aeb"), "createdAt" : ISODate("2021-02-13T10:53:39.924Z"), "cryptoName" : "ETH", "rateToUSD" : 0.7098834856981644 }
     { "_id" : ObjectId("6027afb3ab20aef6faed4aed"), "createdAt" : ISODate("2021-02-13T10:53:39.924Z"), "cryptoName" : "ETH", "rateToUSD" : 0.2567091007933938 }
 
+В логе приложения вы заметите следующее сообщение: `Sink to MongoDB is finished`.
+Оно появится не сразу, а с задержкой примерно в 5 секунд, благодаря тому, что
+мы настроили механизм троттлинга в нашем Flow и сохраняем в базу данных
+по два документа в секунду.
+
 ### Полезные ссылки
 * [Документация по Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html)
 * [Документация по Akka Streams + MongoDB](https://doc.akka.io/docs/alpakka/current/mongodb.html)
